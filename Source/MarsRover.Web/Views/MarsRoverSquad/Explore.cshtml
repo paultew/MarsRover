@@ -1,0 +1,89 @@
+﻿@using MarsRover.Web.Extensions
+@model MarsRover.Web.Models.MarsRover.MarsRoverSquadModel
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+
+@{
+    ViewBag.Title = "Mars Explorer";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+        <fieldset>
+            <legend>@Html.DisplayNameFor(m => m.Plateau)</legend>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Plateau.X, new {@class = "col-md-2 control-label"})
+                <div class="col-md-10">
+                    @Html.EditorFor(m => m.Plateau.X, new {@class = "form-control"})
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Plateau.Y, new {@class = "col-md-2 control-label"})
+                <div class="col-md-10">
+                    @Html.EditorFor(m => m.Plateau.Y, new {@class = "form-control"})
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>@Html.DisplayNameFor(m => m.Rovers)</legend>
+            <div class="table-responsive">
+                <table id="rovertable" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th colspan="3">@Html.DisplayNameFor(m => m.Rovers[0].InputLocation)</th>
+                        <th rowspan="2">@Html.DisplayNameFor(m => m.Rovers[0].Commands)</th>
+                        <th colspan="3">@Html.DisplayNameFor(m => m.Rovers[0].OutputLocation)</th>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.Rovers[0].InputLocation.X)</th>
+                        <th>@Html.DisplayNameFor(m => m.Rovers[0].InputLocation.Y)</th>
+                        <th>@Html.DisplayNameFor(m => m.Rovers[0].InputLocation.Orientation)</th>
+                        <th>@Html.DisplayNameFor(m => m.Rovers[0].OutputLocation.X)</th>
+                        <th>@Html.DisplayNameFor(m => m.Rovers[0].OutputLocation.Y)</th>
+                        <th>@Html.DisplayNameFor(m => m.Rovers[0].OutputLocation.Orientation)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @for (int i = 0; i < Model.Rovers.Count; i++)
+                    {
+                        <tr>
+                            <td>@Html.EditorFor(m => m.Rovers[i].InputLocation.X)</td>
+                            <td>@Html.EditorFor(m => m.Rovers[i].InputLocation.Y)</td>
+                            <td>@Html.EditorFor(m => m.Rovers[i].InputLocation.Orientation)</td>
+                            <td>@Html.EditorFor(m => m.Rovers[i].Commands)</td>
+                            <td>@Html.EditorFor(m => m.Rovers[i].OutputLocation.X)</td>
+                            <td>@Html.EditorFor(m => m.Rovers[i].OutputLocation.Y)</td>
+                            <td>@Html.EditorFor(m => m.Rovers[i].OutputLocation.Orientation)</td>
+                        </tr>
+                    }
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="7"><input type="button" id="newrover" value="New Rover" class="btn btn-default"/></td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </fieldset>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
