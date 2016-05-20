@@ -61,9 +61,9 @@
                             <td>@Html.EditorFor(m => m.Rovers[i].InputLocation.Y)</td>
                             <td>@Html.EditorFor(m => m.Rovers[i].InputLocation.Orientation)</td>
                             <td>@Html.EditorFor(m => m.Rovers[i].Commands)</td>
-                            <td>@Html.EditorFor(m => m.Rovers[i].OutputLocation.X)</td>
-                            <td>@Html.EditorFor(m => m.Rovers[i].OutputLocation.Y)</td>
-                            <td>@Html.EditorFor(m => m.Rovers[i].OutputLocation.Orientation)</td>
+                            <td>@Html.DisplayFor(m => m.Rovers[i].OutputLocation.X)</td>
+                            <td>@Html.DisplayFor(m => m.Rovers[i].OutputLocation.Y)</td>
+                            <td>@Html.DisplayFor(m => m.Rovers[i].OutputLocation.Orientation)</td>
                         </tr>
                     }
                     </tbody>
